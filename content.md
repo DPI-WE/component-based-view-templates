@@ -64,7 +64,7 @@ Or use the [collection](https://api.rubyonrails.org/classes/ActionView/PartialRe
 - **Naming Conventions**: Name your partials starting with an underscore (_) to differentiate them from regular view files.
 - **Local Variables**: Always pass local variables explicitly to your partials. This makes dependencies clear and avoids relying on instance variables `@`, which can make your code harder to understand.
 - **Keep Partials Small**: Aim to keep your partials focused and small. If a partial grows too large, consider breaking it down into smaller components.
-- **Consider Defining Locals**: [Rails 7.1 gives templates more control over the locals they receive](https://www.shakacode.com/blog/rails-7-1-allows-templates-to-define-accepted-locals/). In our example, `app/views/posts/_card.html.erb` could use a magic comment to restrict the local variable it can accept to only `post`.
+- **Consider Defining Accepted Locals**: [Rails 7.1 gives templates more control over the locals they receive](https://www.shakacode.com/blog/rails-7-1-allows-templates-to-define-accepted-locals/). In our example, `app/views/posts/_card.html.erb` could use a magic comment to restrict the local variable it can accept to only `post`.
 
 ```erb
 <%# locals: (post:) %>
