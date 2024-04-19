@@ -1,23 +1,74 @@
-# Replace with lesson title
+# Component-Based View Templates 🧩
 
-Add your content here!
+## Introduction
+Component-Based View Templates are a design pattern that helps in maintaining a clean, consistent, and reusable codebase. This lesson will introduce you to creating reusable view components in Rails using [partials](https://edgeapi.rubyonrails.org/classes/ActionView/PartialRenderer.html), focusing on implementing a card component styled with [Bootstrap](https://getbootstrap.com/).
 
-[Read up here for full instructions with examples for lesson writing.](https://learn.firstdraft.com/lessons/3-how-to-write-a-lesson)
+## Objectives
+By the end of this lesson, you will be able to:
 
-## Heading 1
+1. Understand the benefits of using view components.
+2. Create a reusable partial for a Bootstrap card component.
+3. Use the partial in various views across your Rails application.
 
-Use `##` second or greater level headings (HTML `<h2>` and greater).
+## Why Use Component-Based View Templates?
+Component-Based View Templates helps keep your views DRY (Don't Repeat Yourself) and makes them easier to manage. Instead of repeating the same HTML code across multiple views, you can create a single, reusable partial. This not only saves time but also ensures consistency in the design and behavior of elements like cards, forms, and buttons across your application.
 
-### Heading 1.1
+## Example: Creating a Card Component
+First, ensure you have Bootstrap integrated into your Rails application. For this example, we'll assume Bootstrap is set up and ready to use.
 
-Reference images from the `assets/` folder like so:
+1. Create file
+Create a new file at `app/views/posts/_card.html.erb`. This will be our partial for the card component.
 
+2. Add HTML for the Card
+Inside `_card.html.erb`, write the HTML needed to display a card. Utilize Bootstrap classes to style the card properly.
+
+```erb
+<!-- app/views/posts/_card.html.erb -->
+<div class="card">
+  <% if post.image.present? %>
+    <img class="card-img-top" src="<%= post.image.url %>" alt="Card image cap">
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-title"><%= post.title %></h5>
+    <p class="card-text"><%= post.content %></p>
+  </div>
+</div>
 ```
-![](assets/example-image.png)
+
+Here, post is assumed to be a local variable that will be passed to the partial. It contains attributes like title, content, and image.
+
+<!-- TODO: explain @ vs locals -->
+
+3. Use the Partial
+To use the partial in your views, you'll pass the post object to the partial as a local variable. In any view file, render the partial as follows.
+
+```erb
+<!-- Render the card partial for a post -->
+<%= render "posts/card", post: @post %>
 ```
 
-You can use the path `/assets/my-image.png` or `assets/my-image.png`, both will render in your local markdown preview; and when you connect the repository with a Learn Lesson, the assets will upload to Cloudinary and the paths will automatically be converted to a hosted URL, e.g.:
+### Displaying A Collection
+You can loop through an array of posts and render the card for each one.
+```erb
+<% @posts.each do |post| %>
+  <%= render "posts/card", post: post %>
+<% end %>
+```
 
+Or use the [collection](https://api.rubyonrails.org/classes/ActionView/PartialRenderer.html) shorthand.
+```erb
+<%= render partial: "posts/card", collection: @posts, as: :post %>
 ```
-![](https://res.cloudinary.com/[CLOUD_NAME]/image/upload/[IMAGE_VERSION]/appdev-lessons/[REPO_NAME]/[BRANCH]/[IMAGE_NAME])
+
+## Best Practices
+- **Naming Conventions**: Name your partials starting with an underscore (_) to differentiate them from regular view files.
+- **Local Variables**: Always pass local variables explicitly to your partials. This makes dependencies clear and avoids relying on instance variables `@`, which can make your code harder to understand.
+- **Keep Partials Small**: Aim to keep your partials focused and small. If a partial grows too large, consider breaking it down into smaller components.
+- **Consider Defining Locals**: [Rails 7.1 gives templates more control over the locals they receive](https://www.shakacode.com/blog/rails-7-1-allows-templates-to-define-accepted-locals/). In our example, `app/views/posts/_card.html.erb` could use a magic comment to restrict the local variable it can accept to only `post`.
+
+```erb
+<%# locals: (post:) %>
 ```
+
+## Conclusion
+Using component-based view templates in Rails applications allows you to build a more maintainable and scalable front-end. By extracting repeated HTML structures into partials, you reduce redundancy, simplify updates, and achieve a more consistent user interface. This technique is powerful when combined with frameworks like Bootstrap, enabling rapid development of visually appealing features.
