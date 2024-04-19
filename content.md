@@ -7,7 +7,7 @@ Component-Based View Templates are a design pattern that helps in maintaining a 
 By the end of this lesson, you will be able to:
 
 1. Understand the benefits of using view components.
-2. Create a reusable partial for a Bootstrap card component.
+2. Create a reusable partial for a [Bootstrap card](https://getbootstrap.com/docs/5.3/components/card/) component.
 3. Use the partial in various views across your Rails application.
 
 ## Why Use Component-Based View Templates?
