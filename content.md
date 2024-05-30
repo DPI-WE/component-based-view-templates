@@ -70,5 +70,34 @@ Or use the [collection](https://api.rubyonrails.org/classes/ActionView/PartialRe
 <%# locals: (post:) %>
 ```
 
+## Quiz
+
+- What is the main benefit of using Component-Based View Templates in Rails?
+- They improve database performance.
+  - Not quite. The main benefit is reducing code duplication and improving maintainability.
+- They help keep views DRY (Don't Repeat Yourself) and make them easier to manage.
+  - Correct! Component-Based View Templates reduce redundancy and improve manageability.
+- They enhance user authentication.
+  - Not quite. Component-Based View Templates are primarily about code organization and reusability.
+{: .choose_best #component_based_templates title="Benefits of Component-Based View Templates" points="1" answer="2" }
+
+- Why should you name your partials starting with an underscore (_)?
+- To differentiate them from regular view files.
+  - Correct! The underscore helps distinguish partials from regular view files.
+- To make them load faster.
+  - Not quite. The underscore is for naming convention, not for performance.
+- To enhance security.
+  - Not quite. The underscore is for naming convention, not security.
+{: .choose_best #naming_partials title="Naming Conventions for Partials" points="1" answer="1" }
+
+- Why should you aim to keep your partials focused and small?
+- To improve application performance.
+  - Not quite. While organization is important, it doesn't directly impact performance.
+- To handle user authentication.
+  - Not quite. Keeping partials small is about maintainability and readability, not authentication.
+- To make them easier to understand, maintain, and reuse.
+  - Correct! Smaller, focused partials are easier to work with and promote reusability.
+{: .choose_best #keeping_partials_small title="Keeping Partials Small" points="1" answer="3" }
+
 ## Conclusion
 Using component-based view templates in Rails applications allows you to build a more maintainable and scalable front-end. By extracting repeated HTML structures into partials, you reduce redundancy, simplify updates, and achieve a more consistent user interface. This technique is powerful when combined with frameworks like Bootstrap, enabling rapid development of visually appealing features.
